@@ -29,7 +29,7 @@ class AnimallProperties(bpy.types.PropertyGroup):
     key_point_location: BoolProperty(
         name="Location",
         description="Insert keyframes on point locations",
-        default=False)
+        default=True)
     key_shape_key: BoolProperty(
         name="Shape Key",
         description="Insert keyframes on active Shape Key layer",
@@ -687,8 +687,8 @@ isUpdatingAnimall = False
 @bpy.app.handlers.persistent
 def onAutoKey_handler(scene, depsgraph):
     global isUpdatingAnimall
+    context = bpy.context
     if isUpdatingAnimall == False and scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
-        context = bpy.context
         for upd in depsgraph.updates:
             if upd.is_updated_geometry == True:
                 # check whether we're interested in this mesh
