@@ -350,14 +350,30 @@ def insert_keyfame_animall_shapekey_execute(context, objects, animall_properties
     bpy.ops.object.mode_set(mode=mode)
 
 
+def getSelectedObjects(context):
+    # a little more robust object selection to support different modes by Anthony Aragues
+    # arrObjects = getSelectedObjects(context)
+    arrObjects = []
+    if context.mode == 'OBJECT':
+        if hasattr(context, 'selected_objects'):
+            arrObjects = context.selected_objects
+        if len(arrObjects) == 0 and hasattr(context, 'active_object'):
+            arrObjects.append(context.active_object)
+        if len(arrObjects) == 0:
+            for obj in context.scene.objects:
+                if obj.select_get() == True:
+                    arrObjects.append(obj)
+    else:
+        arrObjects = context.objects_in_mode_unique_data[:]
+    if len(arrObjects) == 0:
+        print('no objects found to work with for animall+autokey')
+    return arrObjects
+
+
 def insert_keyframe_animall_execute(context, skip_shapekeys=False):
     animall_properties = context.scene.animall_properties
 
-    if context.mode == 'OBJECT':
-        objects = context.selected_objects
-    else:
-        objects = context.objects_in_mode_unique_data[:]
-
+    objects = getSelectedObjects(context)
     # Separate loop for lattices, curves and surfaces, since keyframe insertion
     # has to happen in Edit Mode, otherwise points move back upon mode switch...
     # (except for curve shape keys)
@@ -453,10 +469,7 @@ class ANIM_OT_delete_keyframe_animall(Operator):
     def execute(op, context):
         animall_properties = context.scene.animall_properties
 
-        if context.mode == 'OBJECT':
-            objects = context.selected_objects
-        else:
-            objects = context.objects_in_mode_unique_data[:]
+        objects = getSelectedObjects(context)
 
         mode = context.object.mode
 
@@ -591,10 +604,7 @@ class ANIM_OT_clear_animation_animall(Operator):
         return wm.invoke_confirm(self, event)
 
     def execute(self, context):
-        if context.mode == 'OBJECT':
-            objects = context.selected_objects
-        else:
-            objects = context.objects_in_mode_unique_data
+        objects = getSelectedObjects(context)
 
         for obj in objects:
             try:
@@ -689,11 +699,12 @@ def onAutoKey_handler(scene, depsgraph):
     global isUpdatingAnimall
     context = bpy.context
     if isUpdatingAnimall == False and scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
-        for upd in depsgraph.updates:
-            if upd.is_updated_geometry == True:
-                # check whether we're interested in this mesh
-                debounce_action(context, upd.id.name)
-                return
+        if hasattr(depsgraph, 'updates'):
+            for upd in depsgraph.updates:
+                if upd.is_updated_geometry == True:
+                    # check whether we're interested in this mesh
+                    debounce_action(context)
+                    return
 
 
 DEBOUNCE_TIME = 0.3  # 1/3 second
@@ -728,11 +739,11 @@ def register():
     bpy.utils.register_class(ANIM_OT_update_vertex_color_animation_animall)
     bpy.utils.register_class(AnimallAddonPreferences)
     update_panel(None, bpy.context)
-    bpy.app.handlers.depsgraph_update_pre.append(onAutoKey_handler)
+    bpy.app.handlers.depsgraph_update_post.append(onAutoKey_handler)
 
 
 def unregister():
-    bpy.app.handlers.depsgraph_update_pre.remove(onAutoKey_handler)
+    bpy.app.handlers.depsgraph_update_post.remove(onAutoKey_handler)
 
     del bpy.types.Scene.animall_properties
     bpy.utils.unregister_class(AnimallProperties)
