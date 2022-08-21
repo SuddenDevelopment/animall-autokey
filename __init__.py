@@ -24,6 +24,10 @@ class AnimallProperties(bpy.types.PropertyGroup):
         name="Key Selected Only",
         description="Insert keyframes only on selected elements",
         default=False)
+    key_autokey: BoolProperty(
+        name="Enable AutoKey",
+        description="Allow AutoKey to use AnimAll on changes",
+        default=True)
 
     # Generic attributes
     key_point_location: BoolProperty(
@@ -211,6 +215,7 @@ class VIEW3D_PT_animall(Panel):
 
         col = layout.column(align=True)
         col.prop(animall_properties, "key_selected")
+        col.prop(animall_properties, "key_autokey")
 
         row = layout.row(align=True)
         row.operator("anim.insert_keyframe_animall", icon="KEY_HLT")
@@ -691,14 +696,14 @@ class AnimallAddonPreferences(AddonPreferences):
 
 
 isUpdatingAnimall = False
-#====|| AUTOKEY FUNCTIONALITY by Anthony Aragues ||====#
 
 
+#====|| AUTOKEY FUNCTIONALITY by Anthony Aragues, Adam Earle ||====#
 @bpy.app.handlers.persistent
 def onAutoKey_handler(scene, depsgraph):
     global isUpdatingAnimall
     context = bpy.context
-    if isUpdatingAnimall == False and scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
+    if scene.animall_properties.key_autokey == True and isUpdatingAnimall == False and scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
         if hasattr(depsgraph, 'updates'):
             for upd in depsgraph.updates:
                 if upd.is_updated_geometry == True:
