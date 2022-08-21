@@ -687,14 +687,13 @@ isUpdatingAnimall = False
 @bpy.app.handlers.persistent
 def onAutoKey_handler(scene, depsgraph):
     global isUpdatingAnimall
-    if isUpdatingAnimall == False and scene.KEY_mode != 'blender':
+    if isUpdatingAnimall == False and scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
         context = bpy.context
-        if scene.tool_settings.use_keyframe_insert_auto and context.mode.startswith('EDIT_'):
-            for upd in depsgraph.updates:
-                if upd.is_updated_geometry == True:
-                    # check whether we're interested in this mesh
-                    debounce_action(context, upd.id.name)
-                    return
+        for upd in depsgraph.updates:
+            if upd.is_updated_geometry == True:
+                # check whether we're interested in this mesh
+                debounce_action(context, upd.id.name)
+                return
 
 
 DEBOUNCE_TIME = 0.3  # 1/3 second
