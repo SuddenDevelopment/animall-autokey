@@ -714,9 +714,9 @@ debounced_action = None
 def debounce_action(context):
     """ Print the last message to be invoked within a certain amount of time """
     global debounced_action
-    global isUpdatingAnimall
 
     def doWork():
+        global isUpdatingAnimall
         # autokey feature
         isUpdatingAnimall = True
         insert_keyframe_animall_execute(context, skip_shapekeys=True)
