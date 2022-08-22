@@ -1,9 +1,9 @@
-# animall-autokey
+# AnimAll-Autokey
 An updated version of animall that comes with Blender with autokey functionality, for faster workflow.
 
 Do not use this at the same time as the included Blender addon they will conflict.
 
-# features
+# Features
     1. supports autokey
     2. location selected by default
 # Install
