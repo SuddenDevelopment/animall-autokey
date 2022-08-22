@@ -4,11 +4,11 @@ An updated version of animall that comes with Blender with autokey functionality
 Do not use this at the same time as the included Blender addon they will conflict.
 
 # Features
-    1. supports autokey
-    2. location selected by default
+    1. Supports autokey
+    2. Location selected by default
 # Install
 
-download as a zip and install like a normal addon
+Download as a zip and install like a normal addon
 
 # Support
 
