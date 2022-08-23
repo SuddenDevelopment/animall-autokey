@@ -8,7 +8,7 @@ from bpy.app.handlers import persistent
 bl_info = {
     "name": "AnimAll + Auto Key",
     "author": "Daniel Salazar (ZanQdo), Damien Picard (pioverfour), Anthony Aragues (autokey functionality)",
-    "version": (0, 9, 6),
+    "version": (1, 0, 2),
     "blender": (3, 2, 0),
     "location": "3D View > Toolbox > Animation tab > AnimAll",
     "description": "Allows animation of mesh, lattice, curve and surface data",
