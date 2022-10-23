@@ -16,10 +16,6 @@ Do not use this at the same time as the included Blender addon they will conflic
 Download as a zip and install like a normal addon
 
 
-# Install
-Download as a zip and install like a normal addon
-
-
 # Support
 If you appreciate this work consider buying it for $3.57 _(This is our lowest calculated margin)_ on BlenderMarket. Look at our other products Anthony-Aragues & Adam Earle.
 > **Anthony-Aragues:**
