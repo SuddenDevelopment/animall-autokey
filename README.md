@@ -1,19 +1,21 @@
 # AnimAll-Autokey
 An updated version of animall that comes with Blender with autokey functionality, for faster workflow.
 
-#Compatability
+Compatability
 Blender versions 3.3 and above
 
 Do not use this at the same time as the included Blender addon they will conflict.
 
+
 # Features
     1. Supports autokey
     2. Location selected by default
+    
+    
 # Install
-
 Download as a zip and install like a normal addon
 
-# Support
 
+# Support
 If you appreciate this work consider buying it for $2 on BlenderMarket. Look at our other products.
 https://blendermarket.com/creators/anthony-aragues
