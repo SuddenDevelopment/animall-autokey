@@ -17,5 +17,14 @@ Download as a zip and install like a normal addon
 
 
 # Support
-If you appreciate this work consider buying it for $2 on BlenderMarket. Look at our other products.
-https://blendermarket.com/creators/anthony-aragues
+If you appreciate this work consider buying it for $2 on BlenderMarket. Look at our other products Anthony-Aragues & Adam Earle.
+> **Anthony-Aragues:**
+> BlenderMarket: https://blendermarket.com/creators/anthony-aragues
+> Discord:
+
+> **Adam Earle:**
+> GumRoad: https://mradamearle.gumroad.com/
+> Discord: https://discord.gg/nkPA7KxwRX
+> Youtube: https://www.youtube.com/playlist?list=PLWn1OdWrqvz2dqIzVFV4wneZs1z2FauP0
+> Instagram: https://www.instagram.com/mradamearle/
+> Twitter: https://twitter.com/MrAdamEarle
