@@ -1,6 +1,9 @@
 # AnimAll-Autokey
 An updated version of animall that comes with Blender with autokey functionality, for faster workflow.
 
+#Compatability
+Blender versions 3.3 and above
+
 Do not use this at the same time as the included Blender addon they will conflict.
 
 # Features
