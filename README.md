@@ -17,7 +17,7 @@ Download as a zip and install like a normal addon
 
 
 # Support
-If you appreciate this work consider buying it for $3.57 _(This is out lowest calculated margin)_ on BlenderMarket. Look at our other products Anthony-Aragues & Adam Earle.
+If you appreciate this work consider buying it for $3.57 _(This is our lowest calculated margin)_ on BlenderMarket. Look at our other products Anthony-Aragues & Adam Earle.
 > **Anthony-Aragues:**
 > 1. BlenderMarket: https://blendermarket.com/creators/anthony-aragues
 > 2. Discord:
